@@ -9,6 +9,9 @@ public class Formulario {
     private String sexo;
     private String uf;
 
+    public Formulario() {
+    }
+
     public Formulario(String nomeCompleto, String telefone, String email, String cidade, String ingressarListaEmail, String sexo, String uf) {
         this.nomeCompleto = nomeCompleto;
         this.telefone = telefone;
@@ -22,7 +25,7 @@ public class Formulario {
     @Override
     public String toString() {
         return "Nome Completo: " + nomeCompleto + ", telefone: " + telefone + ", e-mail: " + email +
-                ", cidade: " + cidade + ", Lista de e-mail?: " + ingressarListaEmail + ", sexo: " + sexo +
+                ", cidade: " + cidade + ", Lista de e-mail: " + ingressarListaEmail + ", sexo: " + sexo +
                 ", UF: " + uf;
     }
 }

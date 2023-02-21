@@ -3,6 +3,7 @@ package br.edu.ifsp.aluno.ads.cadastro;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private EditText txtNomeCompleto;
@@ -44,14 +47,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Formulario formulario;
+                Formulario formulario = new Formulario();
 
-                if(rdSexoFeminino.isChecked()){
-                    formulario = new Formulario(txtNomeCompleto.getText().toString(), txtTelefone.getText().toString(),  txtEmail.getText().toString(), txtCidade.getText().toString(),String.valueOf(ckIngressarListaEmail.isChecked()),(String) rdSexoFeminino.getText(),listaUf.getSelectedItem().toString());
-                    System.out.println(formulario);
+                if(txtNomeCompleto.getText().toString().equals("") || txtTelefone.getText().toString().equals("") || txtCidade.getText().toString().equals("") || txtEmail.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Todos os campos devem ser preenchidos! Tente novamente!", Toast.LENGTH_LONG).show();
                 }else{
-                    formulario = new Formulario( txtNomeCompleto.getText().toString(), txtTelefone.getText().toString(), txtEmail.getText().toString(), txtCidade.getText().toString(),String.valueOf(ckIngressarListaEmail.isChecked()),(String) rdSexoMasculino.getText(),listaUf.getSelectedItem().toString());
-                    System.out.println(formulario);
+                    if(rdSexoFeminino.isChecked()){
+                        formulario = new Formulario(txtNomeCompleto.getText().toString(), txtTelefone.getText().toString(),  txtEmail.getText().toString(), txtCidade.getText().toString(),String.valueOf(ckIngressarListaEmail.isChecked()),(String) rdSexoFeminino.getText(),listaUf.getSelectedItem().toString());
+                        System.out.println(formulario);
+                    }else{
+                        formulario = new Formulario(txtNomeCompleto.getText().toString(), txtTelefone.getText().toString(), txtEmail.getText().toString(), txtCidade.getText().toString(),String.valueOf(ckIngressarListaEmail.isChecked()),(String) rdSexoMasculino.getText(),listaUf.getSelectedItem().toString());
+                        System.out.println(formulario);
+                    }
                 }
 
                 Toast.makeText(getApplicationContext(), formulario.toString(), Toast.LENGTH_LONG).show();
